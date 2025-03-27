@@ -2,6 +2,8 @@
 
 namespace rotous\holidays;
 
+use Exception;
+
 require_once __DIR__ . '/exceptions/YearOutOfBoundsException.php';
 
 class HolidaysNL {
@@ -24,7 +26,7 @@ class HolidaysNL {
 	 */
 	private function _getCurrentYear() {
 		$date = new \DateTime();
-		return intval($date->format('Y'), 10);
+		return (int)$date->format('Y');
 	}
 
 	/**
@@ -111,7 +113,7 @@ class HolidaysNL {
 		$this->_validateYear($year);
 
 		// easter_days gives the number of days after the start of spring (21st of March)
-		$edays = easter_days($year);
+		$edays = \easter_days($year);
 		$day = 21 + $edays;
 
 		if ($day <= 31) {
@@ -425,7 +427,7 @@ class HolidaysNL {
 
 		// Order on date
 		usort($holidays, function($a, $b) {
-			return intval($a->format('Ymd'), 10) - intval($b->format('Ymd'), 10);
+			return (int)$a->format('Ymd') - (int)$b->format('Ymd');
 		});
 
 		return $holidays;
@@ -480,7 +482,7 @@ class HolidaysNL {
 	/**
 	 * Checks if a date specified by the given \DateTime object is a holiday
 	 *
-	 * @param \DateTime $date The date to check. If null is passed the current
+	 * @param string $date The date to check. If null is passed the current
 	 * date will be used
 	 * @return bool
 	 */
