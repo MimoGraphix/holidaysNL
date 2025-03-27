@@ -2,6 +2,7 @@
 
 namespace rotous\holidays;
 
+use Carbon\Carbon;
 use Exception;
 
 require_once __DIR__ . '/exceptions/YearOutOfBoundsException.php';
@@ -113,19 +114,9 @@ class HolidaysNL {
 		$this->_validateYear($year);
 
 		// easter_days gives the number of days after the start of spring (21st of March)
-		$edays = \easter_days($year);
-		$day = 21 + $edays;
-
-		if ($day <= 31) {
-			// Easter in March
-			$date = new \DateTime($year . '-3-' . $day . ' 12:00:00', $this->_timezone);
-		} else {
-			// Easter in April
-			$day = $day - 31;
-			$date = new \DateTime($year . '-4-' . $day . ' 12:00:00', $this->_timezone);
-		}
-
-		return $date;
+        $easterSunday = (new \DateTime)->setTimestamp(EasterDate::get($year));
+        $easterSunday->sub(new \DateInterval('P2D'));
+        return $easterSunday->add(new \DateInterval('P3D'));
 	}
 
 	/**

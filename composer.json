@@ -1,38 +1,33 @@
 {
-    "name": "rotous/holidays-nl",
-    "description": "Package to find Dutch holiday dates",
-    "type": "library",
-    "license": "AGPL-3.0",
-    "authors": [
-        {
-            "name": "Ronald Toussaint",
-            "email": "ronaldtoussaint@gmail.com"
-        }
-    ],
-    "require": {
-		"php": ">=5.3"
-	},
-	"autoload": {
-        "psr-4": {
-			"rotous\\holidays\\": "src/"
-		}
-    },
-	"keywords": [
-		"holidays",
-		"notional holidays",
-		"Netherlands",
-		"New Year",
-		"Easter",
-		"Ascension",
-		"Pentecost",
-		"Christmas",
-		"Queens Day",
-		"Kings Day"
-	],
-    "require-dev": {
-        "sami/sami": "^4.1"
-    },
-	"scripts": {
-		"gen-doc": "php vendor/sami/sami/sami.php update tools/sami/sami.config.php"
-	}
+  "name": "rotous/holidays-nl",
+  "description": "Package to find Dutch holiday dates",
+  "type": "library",
+  "license": "AGPL-3.0",
+  "authors": [
+    {
+      "name": "Ronald Toussaint",
+      "email": "ronaldtoussaint@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "nesbot/carbon": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "rotous\\holidays\\": "src/"
+    }
+  },
+  "keywords": [
+    "holidays",
+    "notional holidays",
+    "Netherlands",
+    "New Year",
+    "Easter",
+    "Ascension",
+    "Pentecost",
+    "Christmas",
+    "Queens Day",
+    "Kings Day"
+  ]
 }
