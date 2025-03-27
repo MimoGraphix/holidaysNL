@@ -114,9 +114,7 @@ class HolidaysNL {
 		$this->_validateYear($year);
 
 		// easter_days gives the number of days after the start of spring (21st of March)
-        $easterSunday = (new \DateTime)->setTimestamp(EasterDate::get($year));
-        $easterSunday->sub(new \DateInterval('P2D'));
-        return $easterSunday->add(new \DateInterval('P3D'));
+        return (new \DateTime)->setTimestamp(EasterDate::get($year))->setTimezone(new \DateTimeZone('Europe/Amsterdam'))->setTime(12, 0);
 	}
 
 	/**
